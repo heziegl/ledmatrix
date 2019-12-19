@@ -29,15 +29,20 @@ color("blue", alpha = 0.2) {
 
 for (i = [0:raster_num_y]) {
     if (borderStrut || i != 0 ) {
-        translate ([0, raster_size * i - (strut_width/2), 0])
-        cube (size=[raster_size*raster_num_x, 
+        translate ([i==0 ? - (strut_width/2) : 0, 
+                    raster_size * i - (strut_width/2), 
+                    0])
+        cube (size=[i==0 ? raster_size*raster_num_x+strut_width : raster_size*raster_num_x, 
                     strut_width/2, 
                     i==0 ? strutBorder_height : strut_height]);
     }
 
     if (borderStrut || i != raster_num_y) {
-        translate ([0, raster_size * i , 0])
-        cube (size=[raster_size*raster_num_x, 
+        translate ([i==raster_num_y ? - (strut_width/2) : 0, 
+                    raster_size * i , 
+                    0])
+        
+        cube (size=[i==raster_num_y ? raster_size*raster_num_x+strut_width : raster_size*raster_num_x, 
                     strut_width/2, 
                     i==raster_num_y ? strutBorder_height : strut_height]);
     }    
